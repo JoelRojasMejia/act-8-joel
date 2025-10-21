@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Motores</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { margin: 5px; padding: 5px 10px; text-decoration: none; color: white; }
+        .editar { background-color: #007BFF; }
+        .borrar { background-color: #DC3545; }
+        .agregar { background-color: #28A745; display: inline-block; margin: 10px 0; padding: 10px 15px; color: white; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Listado de Motores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for motor in motores %}
+            <tr>
+                <td>{{ motor.marca }}</td>
+                <td>{{ motor.modelo }}</td>
+                <td>
+                    <a href="/editar/{{ motor.id }}/" class="btn editar">Editar</a>
+                    <a href="/borrar/{{ motor.id }}/" class="btn borrar">Borrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No hay motores registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/agregar/" class="btn agregar">Agregar Motor</a>
+</body>
+</html>
